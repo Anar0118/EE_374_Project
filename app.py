@@ -7,25 +7,19 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("My App")
-        self.setFixedSize(QSize(400, 300))
 
-        # Create a central widget
-        central_widget = QWidget(self)
-        self.setCentralWidget(central_widget)
-
-        # Create a layout
-        layout = QVBoxLayout()
-        layout.setAlignment(Qt.AlignCenter)  # Align contents to the center
-
-        # Create a button
         button = QPushButton("Press Me!")
-        button.setFixedSize(QSize(100, 75))  # Set button size
+        button.setCheckable(True)
+        button.clicked.connect(self.the_button_was_clicked)
+        button.clicked.connect(self.the_button_was_toggled)
 
-        # Add button to the layout
-        layout.addWidget(button)
+        self.setCentralWidget(button)
 
-        # Set layout to the central widget
-        central_widget.setLayout(layout)
+    def the_button_was_clicked(self):
+        print("Clicked!")
+
+    def the_button_was_toggled(self, checked):
+        print("Checked?", checked)
 
 app = QApplication(sys.argv)
 
